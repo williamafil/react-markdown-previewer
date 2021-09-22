@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
-import marked from "marked";
-import ReactHtmlParser from "react-html-parser";
 import "./App.css";
 import DEFAULT_MARKDOWN from "./default-markdown";
+import marked from "marked";
+import parse from "html-react-parser";
 
 marked.setOptions({
   breaks: true,
+  gfk: true,
 });
 
 function App() {
@@ -27,7 +28,7 @@ function App() {
         </h1>
         <textarea id="editor" value={markdown} onChange={onChangeHandler} />
       </main>
-      <div id="preview">{ReactHtmlParser(marked(markdown))}</div>
+      <div id="preview">{parse(marked(markdown))}</div>
     </div>
   );
 }
